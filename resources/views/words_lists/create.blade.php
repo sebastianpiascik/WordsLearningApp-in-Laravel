@@ -57,35 +57,10 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="email" class="col-md-4 col-form-label text-md-right">Typ zestawu</label>
-            <div class="col-md-6">
-                <select name="type">
-                    @if(Auth::user()->name == 'admin')
-                        <option value="publiczny" selected>Publiczny</option>
-                        <option value="prywatny">Prywatny</option>
-                    @else
-                        @if($permissions == null)
-                            <option value="prywatny">Prywatny</option>
-                        @else
-                            <option value="publiczny" selected>Publiczny</option>
-                            <option value="prywatny">Prywatny</option>
-                        @endif
-                    @endif
-                </select>
-            </div>
-        </div>
-        <div class="form-group row">
             <label for="email" class="col-md-4 col-form-label text-md-right">Słówka</label>
 
             <div class="col-md-6">
                 <div class="words__container">
-                    <div class="row">
-                        <input type="text" name="word_name[]" placeholder="słowo;word">
-                        <div class="words__delete">
-                            <span class="bar bar-1"></span>
-                            <span class="bar bar-2"></span>
-                        </div>
-                    </div>
                     <div class="row">
                         <input type="text" name="word_name[]" placeholder="słowo;word">
                         <div class="words__delete">
@@ -124,6 +99,11 @@
             $(document).on( "click", '.words__add', function() {
                 console.log('tak');
                 wordsContainer.append(wordInputContainer);
+            });
+
+            $(document).on( "click", '.words__delete', function() {
+                console.log('delete');
+                $(this).parent().remove();
             });
         });
     </script>

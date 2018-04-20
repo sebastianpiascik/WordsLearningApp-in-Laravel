@@ -16,7 +16,7 @@ class CreateWordsListsTable extends Migration
         Schema::create('words_lists', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('type');
+//            $table->string('type');
             $table->integer('subcategory_id')->nullable()->unsigned();
             $table->foreign('subcategory_id')
                 ->references('id')->on('subcategories')

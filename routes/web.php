@@ -37,9 +37,9 @@ Route::resource('users', 'UserController', ['except' => ['show']])->middleware('
 Route::get('users/{id}', 'UserController@show');
 Route::resource('categories', 'CategoryController')->middleware('role:admin');
 Route::resource('subcategories', 'SubcategoryController')->middleware('role:admin');
-Route::resource('words', 'WordController')->middleware('role:redaktor,super_redaktor,admin');
+Route::resource('words', 'WordController')->middleware('role:admin');
 
-Route::group(['middleware' => ['role:redaktor,super_redaktor,admin']], function() {
+Route::group(['middleware' => ['role:uzytkownik,redaktor,super_redaktor,admin']], function() {
 
     // Need permission to do this actions in "except"
     Route::resource('words_lists', 'WordsListController', [

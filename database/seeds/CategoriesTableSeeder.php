@@ -12,6 +12,10 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         $cat = new \App\Category();
+        $cat->name = 'Własne zestawy';
+        $cat->save();
+
+        $cat = new \App\Category();
         $cat->name = 'Podstawy';
         $cat->save();
 
@@ -22,5 +26,7 @@ class CategoriesTableSeeder extends Seeder
         $cat = new \App\Category();
         $cat->name = 'Człowiek';
         $cat->save();
+
+
     }
 }

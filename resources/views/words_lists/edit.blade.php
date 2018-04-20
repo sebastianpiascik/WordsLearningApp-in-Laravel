@@ -62,32 +62,52 @@
                 </select>
             </div>
         </div>
+        {{--<div class="form-group row">--}}
+            {{--<label for="email" class="col-md-4 col-form-label text-md-right">Typ zestawu</label>--}}
+            {{--<div class="col-md-6">--}}
+                {{--<select name="type">--}}
+                    {{--@if(Auth::user()->name == 'admin')--}}
+                        {{--@if($words_list->type == 'publiczny')--}}
+                            {{--<option value="publiczny" selected>Publiczny</option>--}}
+                            {{--<option value="prywatny">Prywatny</option>--}}
+                        {{--@else--}}
+                            {{--<option value="publiczny">Publiczny</option>--}}
+                            {{--<option value="prywatny" selected>Prywatny</option>--}}
+                        {{--@endif--}}
+                    {{--@else--}}
+                        {{--@if($permissions == null)--}}
+                            {{--<option value="prywatny" selected>Prywatny</option>--}}
+                        {{--@else--}}
+                            {{--@if($words_list->type == 'publiczny')--}}
+                                {{--<option value="publiczny" selected>Publiczny</option>--}}
+                                {{--<option value="prywatny">Prywatny</option>--}}
+                            {{--@else--}}
+                                {{--<option value="publiczny">Publiczny</option>--}}
+                                {{--<option value="prywatny" selected>Prywatny</option>--}}
+                            {{--@endif--}}
+                        {{--@endif--}}
+                    {{--@endif--}}
+                {{--</select>--}}
+            {{--</div>--}}
+        {{--</div>--}}
         <div class="form-group row">
-            <label for="email" class="col-md-4 col-form-label text-md-right">Typ zestawu</label>
+            <label for="email" class="col-md-4 col-form-label text-md-right">Słówka</label>
+
             <div class="col-md-6">
-                <select name="type">
-                    @if(Auth::user()->name == 'admin')
-                        @if($words_list->type == 'publiczny')
-                            <option value="publiczny" selected>Publiczny</option>
-                            <option value="prywatny">Prywatny</option>
-                        @else
-                            <option value="publiczny">Publiczny</option>
-                            <option value="prywatny" selected>Prywatny</option>
-                        @endif
-                    @else
-                        @if($permissions == null)
-                            <option value="prywatny" selected>Prywatny</option>
-                        @else
-                            @if($words_list->type == 'publiczny')
-                                <option value="publiczny" selected>Publiczny</option>
-                                <option value="prywatny">Prywatny</option>
-                            @else
-                                <option value="publiczny">Publiczny</option>
-                                <option value="prywatny" selected>Prywatny</option>
-                            @endif
-                        @endif
-                    @endif
-                </select>
+                <div class="words__container">
+                    @foreach($words as $word)
+                        <div class="row">
+                            <input type="text" name="word_name[]" placeholder="słowo;word" value="{{ $word->word }}">
+                            <div class="words__delete">
+                                <span class="bar bar-1"></span>
+                                <span class="bar bar-2"></span>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="row">
+                    <p class="words__add">+ Dodaj nowe słówko</p>
+                </div>
             </div>
         </div>
         <div class="row mt-3">
@@ -100,4 +120,27 @@
     </form>
 
 
+@endsection
+
+
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var wordsContainer = $('.words__container');
+            var wordInput = $('.words__container .row').first().html().toString();
+
+            var wordInputContainer = '<div class="row">'+wordInput+'</div>';
+            console.log(wordInputContainer);
+
+            $(document).on( "click", '.words__add', function() {
+                console.log('tak');
+                wordsContainer.append(wordInputContainer);
+            });
+
+            $(document).on( "click", '.words__delete', function() {
+                console.log('delete');
+                $(this).parent().remove();
+            });
+        });
+    </script>
 @endsection

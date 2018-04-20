@@ -71,6 +71,11 @@ class RegisterController extends Controller
         ]);
         $user->roles()->attach(Role::where('name', 'uzytkownik')->first());
 
+        DB::table('permissions')->insert([
+            'subcategory_id' => 1,
+            'user_id' => $user->id,
+        ]);
+
         return $user;
     }
 }

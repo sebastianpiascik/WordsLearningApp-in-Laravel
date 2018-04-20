@@ -32,7 +32,6 @@
         </tr>
         @foreach ($words_lists as $words_list)
             @if($words_list->type == 'prywatny')
-                @if($words_list->user_id == Auth::user()->id)
                     <tr>
                         <td>{{ $words_list->id }}</td>
                         <td>{{ $words_list->name }}</td>
@@ -55,7 +54,6 @@
                             </form>
                         </td>
                     </tr>
-                @endif
             @else
                 <tr>
                     <td>{{ $words_list->id }}</td>

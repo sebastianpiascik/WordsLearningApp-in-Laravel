@@ -18,13 +18,27 @@
     @endif
 
     <div class="row">
-        @foreach($categories as $cat)
-        <div class="section section__category col-md-12">
-            <a class="section__inner" href="{{ url('/subcategory?category='.$cat->id) }}">
-                <h5>{{ $cat->name }}</h5>
-            </a>
-        </div>
-        @endforeach
+
+        @if(Auth::check())
+            @foreach($categories as $cat)
+                <div class="section section__category col-md-12">
+                    <a class="section__inner" href="{{ url('/subcategory?category='.$cat->id) }}">
+                        <h5>{{ $cat->name }}</h5>
+                    </a>
+                </div>
+            @endforeach
+        @else
+            @foreach($categories as $cat)
+                @if($cat->name != 'Własne zestawy')
+                    <div class="section section__category col-md-12">
+                        <a class="section__inner" href="{{ url('/subcategory?category='.$cat->id) }}">
+                            <h5>{{ $cat->name }}</h5>
+                        </a>
+                    </div>
+                @endif
+            @endforeach
+
+        @endif
     </div>
 
 @endsection
