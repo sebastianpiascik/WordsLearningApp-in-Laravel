@@ -24,6 +24,9 @@
                 <a href="{{ url('/words') }}">Słówka</a>
             @endif
 
+        @else
+            <a href="{{ route('login') }}">Logowanie</a>
+            <a href="{{ route('register') }}">Rejestracja</a>
         @endauth
     </div>
 </div>

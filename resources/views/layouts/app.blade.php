@@ -35,6 +35,8 @@
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/cookie.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/Chart.bundle.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/utils.js') }}"></script>
     @yield('scripts')
 </body>
 </html>

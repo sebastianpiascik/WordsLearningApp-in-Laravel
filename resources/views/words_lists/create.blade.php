@@ -44,7 +44,7 @@
 
             <div class="col-md-6">
                 <select name="subcategory_id">
-                    @if(Auth::user()->name == 'admin')
+                    @if(Auth::user()->roles()->first()->name == 'admin')
                         @foreach($subcategories as $scat)
                             <option value="{{ $scat->id }}">{{ $scat->name }}</option>
                         @endforeach

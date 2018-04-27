@@ -17,24 +17,53 @@
 
     <div class="app__learn__words">
         <div class="row align-items-center">
-            <p class="col-md-4 text-md-right">Polski => </p>
-            <div class="col-md-6">
-                <p class="app__word text-md-left">Poniedziałek</p>
-            </div>
+            @if($algorithm != 3)
+                <p class="col-md-4 text-md-right">Polski => </p>
+                <div class="col-md-6">
+                    <p class="app__word text-md-left">Poniedziałek</p>
+                </div>
+            @else
+                <p class="col-md-6 text-md-right">Polski => </p>
+                <div class="col-md-6">
+                    <p class="app__word text-md-left">Poniedziałek</p>
+                </div>
+            @endif
         </div>
 
         <div class="row align-items-center mt-3">
-            <p class="col-md-4 text-md-right">Angielski => </p>
+            @if($algorithm != 3)
+                <p class="col-md-4 text-md-right">Angielski => </p>
 
-            <div class="col-md-6">
-                <input type="text" name="word" class="app__word__insert">
-            </div>
+                <div class="col-md-6">
+                    <input type="text" name="word" class="app__word__insert">
+                </div>
+            @else
+                <div class="col-md-8 offset-md-2">
+                    <div class="row">
+                        <div class="col-md-6 app__word__choose">
+                            <button type="button" class="app__word__choose__inner">-</button>
+                        </div>
+                        <div class="col-md-6 app__word__choose">
+                            <button type="button" class="app__word__choose__inner">-</button>
+                        </div>
+                        <div class="col-md-6 app__word__choose">
+                            <button type="button" class="app__word__choose__inner">-</button>
+                        </div>
+                        <div class="col-md-6 app__word__choose">
+                            <button type="button" class="app__word__choose__inner">-</button>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
+        @if($algorithm != 3)
         <div class="row mt-3">
             <div class="col-md-10 text-right">
                 <button class="button button--submit">Następne</button>
             </div>
         </div>
+        @else
+        @endif
     </div>
 @endsection
 
@@ -65,6 +94,8 @@
             var wordParagraph = document.querySelector('.app__word');
             var wordInput = document.querySelector('.app__word__insert');
             var wordButton = document.querySelector('.button');
+
+            var selectWordButton = $('.app__word__choose__inner');
 
             var appContainer = $('.app__learn__words');
             var buttonReturn = "<a class='app__button__return' href='{{ url('/mode?words_list='. $words_list .'&learning_mode='. $learning_mode) }}'><i class=\"fas fa-angle-double-left\"></i>Wróc do wyboru metody nauczania</a>"
@@ -145,11 +176,102 @@
                 console.log(wordsLang2);
 
                 wordParagraph.innerHTML = wordsLang1[index];
+
+                if(algorithm == 3){
+                    renderButtonWords();
+                }
             }
 
             // Prevent default behaviour on button click
-            wordButton.onmousedown = function (event) {
-                event.preventDefault();
+            if (algorithm != 3){
+                wordButton.onmousedown = function (event) {
+                    event.preventDefault();
+                }
+            }
+
+            function renderButtonWords(){
+                var amountWords = wordsLang1.length;
+                console.log("ilosc slow:"+amountWords);
+
+                var correctAnswearPosition;
+                var correctAnswearIndex=index;
+                var answearPosition;
+                var answearIndex;
+                var takenPositions = [];
+                var takenIndexes = [];
+
+                if(amountWords == 1){
+                    correctAnswearPosition = Math.floor(Math.random() * 1);
+                    console.log('correct:'+correctAnswearPosition);
+                    selectWordButton.eq(correctAnswearPosition).text(wordsLang2[correctAnswearIndex]);
+                    selectWordButton.not(':first').remove();
+                } else if(amountWords == 2){
+                    correctAnswearPosition = Math.floor(Math.random() * 2);
+                    console.log('correct:'+correctAnswearPosition);
+                    selectWordButton.eq(correctAnswearPosition).text(wordsLang2[correctAnswearIndex]);
+
+                    selectWordButton.eq(2).remove();
+                    selectWordButton.eq(3).remove();
+
+                    takenPositions.push(correctAnswearPosition);
+                    takenIndexes.push(correctAnswearIndex);
+
+                    for(var i=1;i<2;i++){
+                        do {answearPosition = Math.floor(Math.random() * amountWords);}
+                        while (takenPositions.includes(answearPosition));
+                        takenPositions.push(answearPosition);
+
+                        do {answearIndex = Math.floor(Math.random() * amountWords);}
+                        while (takenIndexes.includes(answearIndex));
+                        takenIndexes.push(answearIndex);
+
+                        selectWordButton.eq(answearPosition).text(wordsLang2[answearIndex]);
+                    }
+
+                } else if(amountWords == 3){
+                    correctAnswearPosition = Math.floor(Math.random() * 3);
+                    console.log('correct:'+correctAnswearPosition);
+                    selectWordButton.eq(correctAnswearPosition).text(wordsLang2[correctAnswearIndex]);
+
+                    selectWordButton.eq(3).remove();
+
+                    takenPositions.push(correctAnswearPosition);
+                    takenIndexes.push(correctAnswearIndex);
+
+                    for(var i=1;i<3;i++){
+                        do {answearPosition = Math.floor(Math.random() * amountWords);}
+                        while (takenPositions.includes(answearPosition));
+                        takenPositions.push(answearPosition);
+
+                        do {answearIndex = Math.floor(Math.random() * amountWords);}
+                        while (takenIndexes.includes(answearIndex));
+                        takenIndexes.push(answearIndex);
+
+                        selectWordButton.eq(answearPosition).text(wordsLang2[answearIndex]);
+                    }
+
+
+                } else{
+                    correctAnswearPosition = Math.floor(Math.random() * 4);
+                    console.log('correct:'+correctAnswearPosition+', index:'+correctAnswearIndex);
+                    selectWordButton.eq(correctAnswearPosition).text(wordsLang2[correctAnswearIndex]);
+
+                    takenPositions.push(correctAnswearPosition);
+                    takenIndexes.push(correctAnswearIndex);
+
+                    for(var i=1;i<4;i++){
+                        do {answearPosition = Math.floor(Math.random() * 4);}
+                        while (takenPositions.includes(answearPosition));
+                        takenPositions.push(answearPosition);
+                        console.log(takenPositions);
+
+                        do {answearIndex = Math.floor(Math.random() * 4);}
+                        while (takenIndexes.includes(answearIndex));
+                        takenIndexes.push(answearIndex);
+
+                        selectWordButton.eq(answearPosition).text(wordsLang2[answearIndex]);
+                    }
+                }
             }
 
             function endLearning() {
@@ -230,7 +352,27 @@
                     console.log(index);
                 });
             } else {
+                console.log('s');
+                selectWordButton.click(function () {
+                    var selectValue = $(this).text().toLowerCase();
+                    console.log("val:"+selectValue);
+                    console.log(results);
 
+                    if (selectValue == wordsLang2[index]) {
+                        results[index]++;
+                    }
+
+                    if (index + 1 == wordsLang1.length) {
+                        endLearning();
+                    } else {
+                        index++;
+                    }
+
+                    //Tu zamieniam nazwy buttonow
+                    renderButtonWords();
+
+                    wordParagraph.innerHTML = wordsLang1[index];
+                });
             }
         });
     </script>

@@ -62,34 +62,6 @@
                 </select>
             </div>
         </div>
-        {{--<div class="form-group row">--}}
-            {{--<label for="email" class="col-md-4 col-form-label text-md-right">Typ zestawu</label>--}}
-            {{--<div class="col-md-6">--}}
-                {{--<select name="type">--}}
-                    {{--@if(Auth::user()->name == 'admin')--}}
-                        {{--@if($words_list->type == 'publiczny')--}}
-                            {{--<option value="publiczny" selected>Publiczny</option>--}}
-                            {{--<option value="prywatny">Prywatny</option>--}}
-                        {{--@else--}}
-                            {{--<option value="publiczny">Publiczny</option>--}}
-                            {{--<option value="prywatny" selected>Prywatny</option>--}}
-                        {{--@endif--}}
-                    {{--@else--}}
-                        {{--@if($permissions == null)--}}
-                            {{--<option value="prywatny" selected>Prywatny</option>--}}
-                        {{--@else--}}
-                            {{--@if($words_list->type == 'publiczny')--}}
-                                {{--<option value="publiczny" selected>Publiczny</option>--}}
-                                {{--<option value="prywatny">Prywatny</option>--}}
-                            {{--@else--}}
-                                {{--<option value="publiczny">Publiczny</option>--}}
-                                {{--<option value="prywatny" selected>Prywatny</option>--}}
-                            {{--@endif--}}
-                        {{--@endif--}}
-                    {{--@endif--}}
-                {{--</select>--}}
-            {{--</div>--}}
-        {{--</div>--}}
         <div class="form-group row">
             <label for="email" class="col-md-4 col-form-label text-md-right">Słówka</label>
 
@@ -128,13 +100,13 @@
         $(document).ready(function () {
             var wordsContainer = $('.words__container');
             var wordInput = $('.words__container .row').first().html().toString();
-
             var wordInputContainer = '<div class="row">'+wordInput+'</div>';
             console.log(wordInputContainer);
 
             $(document).on( "click", '.words__add', function() {
                 console.log('tak');
                 wordsContainer.append(wordInputContainer);
+                $('.words__container .row').last().find('input').val('');
             });
 
             $(document).on( "click", '.words__delete', function() {

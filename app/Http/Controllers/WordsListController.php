@@ -86,10 +86,12 @@ class WordsListController extends Controller
         $rows = $request->input('word_name');
         foreach ($rows as $row)
         {
-            $word = new Word();
-            $word->word = $row;
-            $word->words_list_id = $newWordsList->id;
-            $word->save();
+            if($row != null && $row != '') {
+                $word = new Word();
+                $word->word = $row;
+                $word->words_list_id = $newWordsList->id;
+                $word->save();
+            }
         }
 
         return redirect()->route('words_lists.index')
@@ -136,17 +138,19 @@ class WordsListController extends Controller
             'name' => 'required',
         ]);
 
-
         $words_list->update($request->all());
 
         DB::delete('delete from words where words_list_id='.$words_list->id);
         $rows = $request->input('word_name');
+
         foreach ($rows as $row)
         {
-            $word = new Word();
-            $word->word = $row;
-            $word->words_list_id = $words_list->id;
-            $word->save();
+            if($row != null && $row != ''){
+                $word = new Word();
+                $word->word = $row;
+                $word->words_list_id = $words_list->id;
+                $word->save();
+            }
         }
 
 

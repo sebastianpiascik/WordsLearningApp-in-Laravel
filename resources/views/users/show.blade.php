@@ -41,8 +41,67 @@
             @endforeach
         </div>
     </div>
+    <div class="row">
+        <canvas id="canvas" width="400" height="300"></canvas>
+    </div>
 
 
 
 
+@endsection
+
+@section('scripts')
+    <script>
+        var color = Chart.helpers.color;
+
+            var ctx = document.getElementById('canvas').getContext('2d');
+            window.myHorizontalBar = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: [
+                    ],
+                    datasets: [
+
+                            @foreach($results as $result)
+
+                            @php
+                                $c1 = rand(1,255);
+                                $c2 = rand(1,255);
+                                $c3 = rand(1,255);
+                            @endphp
+
+                        {
+                            label: '{{ $words_lists->find($result->words_list_id)->name }}',
+                            backgroundColor: color('rgb({{$c1}},{{$c2}},{{$c3}})').alpha(0.5).rgbString(),
+                            borderColor: 'rgb({{$c1}},{{$c2}},{{$c3}})',
+                            borderWidth: 1,
+                            data: [
+                                {{ $result->result }},
+                            ]
+                        },
+                        @endforeach
+                    ]
+
+                },
+                options: {
+                    elements: {
+                        rectangle: {
+                            borderWidth: 2,
+                        }
+                    },
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Wyniki'
+                    },
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+    </script>
 @endsection
