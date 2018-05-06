@@ -37,7 +37,7 @@
         <p class="col-md-6 text-md-right"><strong>Wyniki uzytkownika: </strong></p>
         <div class="col-md-6">
             @foreach($results as $result)
-            <p class="text-md-left">{{ $result->result }} => Zestaw: {{ $words_lists->find($result->words_list_id)->name }}</p>
+            <p class="text-md-left">{{ $result->result }}% => Zestaw: {{ $words_lists->find($result->words_list_id)->name }}</p>
             @endforeach
         </div>
     </div>

@@ -278,6 +278,14 @@ input[type=checkbox], input[type=radio]{
 .words__container > div.row{
     position: relative;
 }
+
+.words__container input{
+    width: 46%;
+}
+.words__container input:nth-of-type(2){
+    margin-left: 2%;
+}
+
 .words__delete{
     position: absolute;
     top:8px;

@@ -23,7 +23,7 @@
                     <p class="app__word text-md-left">Poniedziałek</p>
                 </div>
             @else
-                <p class="col-md-6 text-md-right">Polski => </p>
+                <p class="col-md-6 text-md-right">Słowo => </p>
                 <div class="col-md-6">
                     <p class="app__word text-md-left">Poniedziałek</p>
                 </div>

@@ -12,11 +12,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement("ALTER TABLE roles AUTO_INCREMENT = 1");
-        DB::statement("ALTER TABLE users AUTO_INCREMENT = 1");
-        DB::statement("ALTER TABLE categories AUTO_INCREMENT = 1");
-        DB::statement("ALTER TABLE subcategories AUTO_INCREMENT = 1");
-        DB::statement("ALTER TABLE words AUTO_INCREMENT = 1");
+//        DB::statement("ALTER TABLE roles AUTO_INCREMENT = 1");
+//        DB::statement("ALTER TABLE users AUTO_INCREMENT = 1");
+//        DB::statement("ALTER TABLE categories AUTO_INCREMENT = 1");
+//        DB::statement("ALTER TABLE subcategories AUTO_INCREMENT = 1");
+//        DB::statement("ALTER TABLE words AUTO_INCREMENT = 1");
         $this->call(RoleTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);

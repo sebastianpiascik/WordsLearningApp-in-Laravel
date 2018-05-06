@@ -73,6 +73,7 @@
                 </select>
             </div>
         </div>
+        @if($user->roles()->first()->name != 'uzytkownik')
         <div class="form-group row">
             <label for="subcategory_id"
                    class="col-md-4 col-form-label text-md-right">{{ __('Daj pozwolenie') }}</label>
@@ -115,6 +116,7 @@
                 </select>
             </div>
         </div>
+        @endif
         <div class="form-group row mt-2">
             <p class="col-md-4 text-md-right">Dozwolone podkategorie</p>
 

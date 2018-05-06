@@ -21,7 +21,7 @@ class CheckPermission
     {
         // Middleware sprawdza czy mozesz edytowac dany zestaw
 
-        // Get all with user_id eq current user
+        // Get all words_lists with user_id eq current user
         $user_id = Auth::user()->id;
         $words_lists_with_id = WordsList::where('user_id',$user_id)->get();
 
@@ -44,6 +44,9 @@ class CheckPermission
 
         if(Auth::user()->roles()->first()->name != 'admin'){
             if($select == true){
+                if($words_list->subcategory_id == 1 && $words_list->user_id != Auth::user()->id){
+                    return redirect('/words_lists')->with('success','Nie masz pozwolenia na edycję prywatnego zestawu');
+                }
                 if(Auth::user()->roles()->first()->name == 'redaktor'){
                     if (! in_array($words_list->name, $words_lists)) {
                         return redirect('/words_lists')->with('success','Nie masz pozwolenia na edycję zestawu');

@@ -62,7 +62,8 @@
             <div class="col-md-6">
                 <div class="words__container">
                     <div class="row">
-                        <input type="text" name="word_name[]" placeholder="słowo;word">
+                        <input type="text" name="word_name_lang1[]" placeholder="słowo">
+                        <input type="text" name="word_name_lang2[]" placeholder="word">
                         <div class="words__delete">
                             <span class="bar bar-1"></span>
                             <span class="bar bar-2"></span>

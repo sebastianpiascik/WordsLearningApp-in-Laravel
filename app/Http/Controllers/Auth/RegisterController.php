@@ -64,6 +64,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $this->redirectTo = '/';
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -71,7 +72,7 @@ class RegisterController extends Controller
         ]);
         $user->roles()->attach(Role::where('name', 'uzytkownik')->first());
 
-        DB::table('permissions')->insert([
+        \DB::table('subcategory_user')->insert([
             'subcategory_id' => 1,
             'user_id' => $user->id,
         ]);

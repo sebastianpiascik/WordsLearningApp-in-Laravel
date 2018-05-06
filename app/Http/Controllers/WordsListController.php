@@ -83,15 +83,18 @@ class WordsListController extends Controller
         $newWordsList = WordsList::create($request->all());
 
         // add words
-        $rows = $request->input('word_name');
-        foreach ($rows as $row)
+        $wordsLang1 = $request->input('word_name_lang1');
+        $wordsLang2 = $request->input('word_name_lang2');
+        $index=0;
+        foreach ($wordsLang1 as $wLang1)
         {
-            if($row != null && $row != '') {
+            if($wLang1 != null && $wLang1 != '') {
                 $word = new Word();
-                $word->word = $row;
+                $word->word = $wLang1.';'.$wordsLang2[$index];
                 $word->words_list_id = $newWordsList->id;
                 $word->save();
             }
+            $index++;
         }
 
         return redirect()->route('words_lists.index')
@@ -141,16 +144,19 @@ class WordsListController extends Controller
         $words_list->update($request->all());
 
         DB::delete('delete from words where words_list_id='.$words_list->id);
-        $rows = $request->input('word_name');
-
-        foreach ($rows as $row)
+        // add words
+        $wordsLang1 = $request->input('word_name_lang1');
+        $wordsLang2 = $request->input('word_name_lang2');
+        $index=0;
+        foreach ($wordsLang1 as $wLang1)
         {
-            if($row != null && $row != ''){
+            if($wLang1 != null && $wLang1 != '') {
                 $word = new Word();
-                $word->word = $row;
+                $word->word = $wLang1.';'.$wordsLang2[$index];
                 $word->words_list_id = $words_list->id;
                 $word->save();
             }
+            $index++;
         }
 
 
