@@ -47,8 +47,9 @@
                     @foreach($words_lists as $wlist)
                         @if($wlist->id == $word->words_list_id)
                             <option value="{{ $wlist->id }}" selected>{{ $wlist->name }}</option>
+                        @else
+                            <option value="{{ $wlist->id }}">{{ $wlist->name }}</option>
                         @endif
-                        <option value="{{ $wlist->id }}">{{ $wlist->name }}</option>
                     @endforeach
                 </select>
             </div>

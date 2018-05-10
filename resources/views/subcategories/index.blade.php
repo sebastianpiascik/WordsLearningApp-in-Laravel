@@ -24,15 +24,15 @@
 
     <table class="table table-bordered">
         <tr>
-            <th>Id</th>
+            <th>Nr</th>
             <th>Nazwa podkategorii</th>
             <th>Nazwa kategorii</th>
             <th width="150px">Akcja</th>
         </tr>
+        @php $i=1 @endphp
         @foreach ($subcategories as $subcategory)
-            @php ($i=0)
             <tr>
-                <td>{{ $subcategory->id }}</td>
+                <td>{{ $i++ }}</td>
                 <td>{{ $subcategory->name }}</td>
                 <td>{{ $categories->find($subcategory->category_id)->name }}</td>
                 <td>

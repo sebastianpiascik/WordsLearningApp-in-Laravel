@@ -23,14 +23,15 @@
 
     <table class="table table-bordered">
         <tr>
-            <th>Id</th>
+            <th>Nr</th>
             <th>Słówko</th>
             <th>Nazwa zestawu słówek</th>
             <th width="150px">Akcja</th>
         </tr>
+        @php $i=1 @endphp
         @foreach ($words as $word)
             <tr>
-                <td>{{ $word->id }}</td>
+                <td>{{ $i++ }}</td>
                 <td>{{ $word->word }}</td>
                 <td>{{ $words_lists->find($word->words_list_id)->name }}</td>
                 <td>

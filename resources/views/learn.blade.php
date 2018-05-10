@@ -301,6 +301,12 @@
 
             readWords();
 
+            $(document).keypress(function(e) {
+                if(e.which == 13) {
+                    wordButton.click();
+                }
+            });
+
             if (algorithm == 1) {
                 wordButton.addEventListener("click", function () {
                     var inputValue = wordInput.value.toLowerCase();

@@ -78,7 +78,11 @@ class WordsListController extends Controller
             'name' => 'required',
         ]);
 
-//        dd($request->all());
+        $request->user_id = Auth::user()->id;
+
+//        dd($request->user_id);
+
+
 
         $newWordsList = WordsList::create($request->all());
 

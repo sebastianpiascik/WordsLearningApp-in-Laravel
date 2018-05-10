@@ -45,5 +45,25 @@ class WordsTableSeeder extends Seeder
         $cat->word = 'niedziela;sunday';
         $cat->words_list_id = 1;
         $cat->save();
+
+        $cat = new \App\Word();
+        $cat->word = 'czerwony;red';
+        $cat->words_list_id = 2;
+        $cat->save();
+
+        $cat = new \App\Word();
+        $cat->word = 'niebieski;blue';
+        $cat->words_list_id = 2;
+        $cat->save();
+
+        $cat = new \App\Word();
+        $cat->word = 'żółty;yellow';
+        $cat->words_list_id = 2;
+        $cat->save();
+
+        $cat = new \App\Word();
+        $cat->word = 'różowy;pink';
+        $cat->words_list_id = 2;
+        $cat->save();
     }
 }

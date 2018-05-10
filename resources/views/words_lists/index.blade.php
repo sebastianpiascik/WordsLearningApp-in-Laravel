@@ -24,17 +24,18 @@
 
     <table class="table table-bordered">
         <tr>
-            <th>Id</th>
+            <th>Nr</th>
             <th>Nazwa zestawu</th>
             <th>Nazwa podkategorii</th>
             <th>Autor</th>
             <th width="150px">Akcja</th>
         </tr>
+        @php $i=1 @endphp
         @foreach ($words_lists as $words_list)
             @if($words_list->subcategory_id == 1)
                 @if($words_list->user_id == Auth::user()->id)
                     <tr>
-                        <td>{{ $words_list->id }}</td>
+                        <td>{{ $i++ }}</td>
                         <td>{{ $words_list->name }}</td>
                         <td>{{ $subcategories->find($words_list->subcategory_id)->name }}</td>
                         @if($words_list->user_id != null)
@@ -58,7 +59,7 @@
                 @endif
             @else
                 <tr>
-                    <td>{{ $words_list->id }}</td>
+                    <td>{{ $i++ }}</td>
                     <td>{{ $words_list->name }}</td>
                     <td>{{ $subcategories->find($words_list->subcategory_id)->name }}</td>
                     @if($words_list->user_id != null)

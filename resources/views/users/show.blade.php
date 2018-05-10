@@ -61,7 +61,6 @@
                     labels: [
                     ],
                     datasets: [
-
                             @foreach($results as $result)
 
                             @php
@@ -71,7 +70,7 @@
                             @endphp
 
                         {
-                            label: '{{ $words_lists->find($result->words_list_id)->name }}',
+                            label: '{{ $words_lists->find($result->words_list_id)->name }}({{ $subcategories->find($words_lists->find($result->words_list_id)->subcategory_id)->name }})',
                             backgroundColor: color('rgb({{$c1}},{{$c2}},{{$c3}})').alpha(0.5).rgbString(),
                             borderColor: 'rgb({{$c1}},{{$c2}},{{$c3}})',
                             borderWidth: 1,

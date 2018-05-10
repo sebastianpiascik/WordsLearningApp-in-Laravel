@@ -51,12 +51,13 @@ class UserController extends Controller
         }
 
         $words_lists = WordsList::all();
+        $subcategories = Subcategory::all();
 
         $user_id = User::findOrFail($id)->id;
         $results = DB::select('select * from results where user_id='.$user_id);
 
 
-        return view('users.show', ['user' => User::findOrFail($id)],compact('results','words_lists'));
+        return view('users.show', ['user' => User::findOrFail($id)],compact('results','words_lists','subcategories'));
     }
 
     /**

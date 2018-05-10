@@ -218,8 +218,6 @@ input[type=checkbox], input[type=radio]{
 }
 
 .header_container{
-    width: 1000px;
-    max-width: 1000px;
     margin: 0 auto;
     box-shadow: 2px 2px 10px 1px rgba(0,0,0,0.2);
     text-align: center;
@@ -228,8 +226,6 @@ input[type=checkbox], input[type=radio]{
 }
 
 .app_container{
-    width: 1000px;
-    max-width: 1000px;
     margin: 0 auto;
     box-shadow: 2px 2px 10px 1px rgba(0,0,0,0.2);
     text-align: center;
@@ -354,4 +350,20 @@ input[type=checkbox], input[type=radio]{
 
 .app__word__choose__inner:hover{
     box-shadow: 2px 2px 10px 1px rgba(109,157,197,0.6);
+}
+
+
+@media screen and (max-width: 600px) {
+    .nav a{
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .app_container{
+        padding: 50px 10px;
+    }
+    .header_container, .app_container{
+        max-width: 96%;
+        overflow-x:scroll;
+    }
 }
